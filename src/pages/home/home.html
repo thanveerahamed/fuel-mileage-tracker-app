@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Fuel & Mileage Tracker
+    </ion-title>
+    
+  </ion-navbar>
+  <ion-toolbar no-border-top>
+    <ion-select class="vehicleSelect" [(ngModel)]="selectModel"  (ionChange)="vehicleSelectionChange()">
+    <ion-option *ngFor="let vehicle of vehicles" [value]="vehicle.id">{{vehicle.make}} {{vehicle.model}}</ion-option>    
+  </ion-select>  
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list #scheduleList [hidden]="fillUps.length === 0">  
+      <ion-item-sliding *ngFor="let fillUp of fillUps" #slidingItem [attr.track]>
+        
+        <ion-item (click)="openFillUpDetail(fillUp)">
+      <ion-avatar item-start>
+        <img src="assets/img/fuelstation.png">
+      </ion-avatar>      
+      <p>Date: {{fillUp.date}}</p>
+      <p>Odo: {{fillUp.currentOdometerValue}} <small>kms</small></p>
+      <p>Distance: {{fillUp.distance}} <small>kms</small></p>
+      <ion-note item-end>{{fillUp.mileage}} <small>km/ltr</small></ion-note>
+    </ion-item>  
+        <ion-item-options>
+          <button ion-button icon-only color="danger" (click)="removeFillUp(slidingItem, fillUp)"><ion-icon name="trash"></ion-icon></button>
+        </ion-item-options>
+
+      </ion-item-sliding>
+
+  </ion-list>
+
+  <ion-list-header [hidden]="fillUps.length > 0">
+      No records found.
+  </ion-list-header>
+
+  <ion-fab bottom right #fab>
+    <button ion-fab><ion-icon name="add"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab color='google'  (click)="openAddFillUpPage()">  <ion-icon><img src="assets/img/addFuel.png"/></ion-icon></button>        
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

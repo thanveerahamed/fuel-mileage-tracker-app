@@ -1,0 +1,41 @@
+<ion-header>
+	<ion-navbar>
+
+		<ion-title>Add Vehicle</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<form #newVehicle="ngForm" novalidate>
+		<ion-list no-lines>
+			<ion-item>
+				<div class="logo">
+					<img src="assets/img/car.png" alt="Ionic logo">
+				</div>
+			</ion-item>
+			<ion-item>
+				<ion-label stacked color="primary">Make</ion-label>
+				<ion-input [(ngModel)]="vehicle.make" name="make" type="text" #vehiclemake="ngModel" spellcheck="false" required>
+				</ion-input>
+			</ion-item>
+			<p ion-text [hidden]="vehiclemake.valid || submitted == false" color="danger" padding-left>
+				Make is required
+			</p>
+
+			<ion-item>
+				<ion-label stacked color="primary">Model</ion-label>
+				<ion-input [(ngModel)]="vehicle.model" name="model" type="text" #vehiclemodel="ngModel" spellcheck="false" required>
+				</ion-input>
+			</ion-item>
+			<p ion-text [hidden]="vehiclemodel.valid || submitted == false" color="danger" padding-left>
+				Model is required
+			</p>
+		</ion-list>
+
+		<ion-row responsive-sm>
+			<ion-col>
+				<button ion-button (click)="saveChanges(newVehicle)" type="submit" block>Add</button>
+			</ion-col>
+		</ion-row>
+	</form>
+</ion-content>

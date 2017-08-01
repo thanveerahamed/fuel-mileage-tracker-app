@@ -1,0 +1,43 @@
+{
+    "vehicles": [
+        {
+            "vehicleId": 1,
+            "name": "Vehicle 1",
+            "make": "Make1",
+            "model":"Model1"
+        },
+        {
+            "vehicleId": 2,
+            "name": "Vehicle 2",
+            "make": "Make2",
+            "model":"Model2"
+        }
+    ],
+
+    "fillUps":[
+        {
+            "fillUpId": 1,
+            "date": "2017-01-20",
+            "lastOdometerValue": "1000",
+            "currentOdometerValue": "1500",
+            "pricePerLiter": "64.15",
+            "liters": "31.18",
+            "cost": "2000",
+            "mileage": "16.03",
+            "vehicleId": 1,
+            "distance": 500
+        },
+        {
+            "fillUpId": 2,
+            "date": "2017-02-20",
+            "lastOdometerValue": "1500",
+            "currentOdometerValue": "2000",
+            "pricePerLiter": "64.15",
+            "liters": "31.18",
+            "rupees": "2000",
+            "mileage": "16.03",
+            "vehicleId" : 1,
+            "distance" : 500
+        }
+    ]
+}

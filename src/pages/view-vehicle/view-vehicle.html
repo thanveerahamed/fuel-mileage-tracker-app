@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{vehicle?.name}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-card class="speaker-card">
+            <ion-card-header>
+                <button ion-item detail-none> 
+                  <img [src]="vehicle.imageUrl">
+              </button>
+            </ion-card-header>
+
+            <ion-card-content text-center>
+                <ion-list>
+                    <h2>Make: {{vehicle.make}}</h2>
+                    <h2>Model: {{vehicle.model}}</h2>
+                    <button ion-button icon-only (click)="editVehicle()"><ion-icon name="create"></ion-icon></button>
+                    <button ion-button icon-only (click)="deleteVehicle()"><ion-icon name="trash"></ion-icon></button>
+                </ion-list>
+            </ion-card-content>
+        </ion-card>
+    </ion-list>
+</ion-content>

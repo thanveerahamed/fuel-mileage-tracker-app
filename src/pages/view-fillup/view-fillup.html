@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Fill Up Detail</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="editFillUp()">
+            <ion-icon name="create"></ion-icon>
+        </button>
+
+            <button ion-button icon-only (click)="deleteFillUp()">
+            <ion-icon name="trash"></ion-icon>
+        </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-grid>
+    <ion-row >
+      <ion-col>Date:</ion-col>
+      <ion-col>{{fillUp.date}}</ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col>Odometer:</ion-col>
+      <ion-col>{{fillUp.currentOdometerValue}} kms</ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col>Distance:</ion-col>
+      <ion-col>{{fillUp.distance}} kms</ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col>Mileage:</ion-col>
+      <ion-col>{{fillUp.mileage}} kms/ltr</ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col>Price/ltr:</ion-col>
+      <ion-col>{{fillUp.pricePerLiter}} rupees</ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col>Total Cost:</ion-col>
+      <ion-col>{{fillUp.cost}} rupees</ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col>Start Odometer:</ion-col>
+      <ion-col>{{fillUp.lastOdometerValue}} kms</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

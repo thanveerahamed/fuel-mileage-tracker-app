@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Vehicles</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content speaker-list">
+  <ion-list [virtualScroll]="vehicles">
+    <ion-grid fixed>
+      <ion-row align-items-stretch>
+
+        <ion-col col-12 col-md-6 align-self-stretch align-self-center *virtualItem="let vehicle" approxItemHeight="457px">
+
+          <ion-card class="speaker-card">
+            <ion-card-header>
+              <button ion-item detail-none (click)="goToVehicleDetail(vehicle)">
+                  <img [src]="vehicle.imageUrl">
+              </button>
+            </ion-card-header>
+
+            <ion-card-content text-center>
+              <ion-list>
+                  <h2>{{vehicle.model}} {{vehicle.make}}</h2>                    
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+
+  <ion-fab bottom right #fab>
+    <button ion-fab><ion-icon name="add"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab  (click)="openAddvehiclePage()"><ion-icon name="car"></ion-icon></button>  
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>
