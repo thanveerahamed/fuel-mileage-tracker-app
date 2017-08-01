@@ -18,4 +18,4 @@ Note: This is almost an live app. But needs some bug fixes and improvements. Thi
  * Usage of Typescript.
  * App with App Drawer.
  * Usage of NavParams, Events.
- * SQLite.
+ * SQLite.# fuel-mileage-tracker-app
