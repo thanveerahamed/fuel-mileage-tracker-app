@@ -1,12 +1,13 @@
 export interface FillUp{
-fillUpId: number,
- date:string,
-lastOdometerValue:string,
-currentOdometerValue:string,
-pricePerLiter:string,
-liters:string,
-cost:string,
-mileage:string,
+id: number,
+date:string,
+odometer:number,
+pricePerLiter:number,
+liters:number,
+amount:number,
+mileage:number,
 vehicleId:number,
-distance:number
+distance:number,
+previousOdometer: number,
+previousLiters: number
 }

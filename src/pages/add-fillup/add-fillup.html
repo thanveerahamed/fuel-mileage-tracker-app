@@ -34,7 +34,7 @@
 
 			<ion-item>
 				<ion-label stacked color="primary">Current Odometer (kms)</ion-label>
-				<ion-input [(ngModel)]="fillup.currentOdometerValue" name="currentOdo" type="text" #fillupcurrentOdometerValue="ngModel"
+				<ion-input [(ngModel)]="fillup.odometer" name="currentOdo" type="text" #fillupcurrentOdometerValue="ngModel"
 				 spellcheck="false" required>
 				</ion-input>
 			</ion-item>
@@ -44,7 +44,7 @@
 
 			<ion-item>
 				<ion-label stacked color="primary">Amount Filled For (rupees)</ion-label>
-				<ion-input [(ngModel)]="fillup.cost" name="amount" type="text" #fillupcost="ngModel" spellcheck="false" required>
+				<ion-input [(ngModel)]="fillup.amount" name="amount" type="text" #fillupcost="ngModel" spellcheck="false" required>
 				</ion-input>
 			</ion-item>
 			<p ion-text [hidden]="fillupcost.valid || submitted == false" color="danger" padding-left>
@@ -61,15 +61,15 @@
 				Field is required
 			</p>
 
-			<ion-item>
+			<!-- <ion-item>
 				<ion-label stacked color="primary">Previous Odometer (kms)</ion-label>
 				<ion-input [(ngModel)]="fillup.lastOdometerValue" name="lastodo" type="text" #filluplastOdometerValue="ngModel" spellcheck="false"
 				 required>
 				</ion-input>
-			</ion-item>
+			</ion-item> 
 			<p ion-text [hidden]="filluplastOdometerValue.valid || submitted == false" color="danger" padding-left>
 				Field is required
-			</p>
+			</p>-->
 
 
 		</ion-list>

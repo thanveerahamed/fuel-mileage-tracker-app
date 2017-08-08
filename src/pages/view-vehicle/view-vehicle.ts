@@ -33,7 +33,7 @@ export class ViewVehiclePage {
                 {
                     text: 'Remove',
                     handler: () => {
-                        this.sqlHelper.query(`delete from tblVehicle where id = ${this.vehicle.id}`)
+                        this.sqlHelper.query(`delete from tblVehicle where ID = ${this.vehicle.id}`)
                             .then(data => {
                                 console.log("vehicle removed!");
                                 this.sqlHelper.query(`delete from tblFillUp where VehicleId = ${this.vehicle.id}`)

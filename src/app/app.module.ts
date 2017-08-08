@@ -9,6 +9,7 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { SQLHelper } from '../providers/sql-helper'
 import { DatePipe } from '@angular/common';
 import { IonicStorageModule } from '@ionic/storage';
+import { Toast } from '@ionic-native/toast';
 
 import { FuelMileageTracker } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -18,6 +19,7 @@ import { AddVehiclePage } from '../pages/add-vehicle/add-vehicle';
 import { AddFillUpPage } from '../pages/add-fillup/add-fillup';
 import { FillUpDetailPage } from '../pages/view-fillup/view-fillup';
 import { ViewVehiclePage } from '../pages/view-vehicle/view-vehicle';
+import { Helper } from '../providers/helper';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,8 @@ import { ViewVehiclePage } from '../pages/view-vehicle/view-vehicle';
     SQLite,    
     SQLHelper,
     DatePipe,    
+    Toast,
+    Helper,
     { provide: ErrorHandler, useClass: IonicErrorHandler }    
   ]
 })

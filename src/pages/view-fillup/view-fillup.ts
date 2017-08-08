@@ -13,12 +13,11 @@ import { TabsPage } from '../tabs/tabs'
 
 export class FillUpDetailPage {
 fillUp: FillUp = {
-    fillUpId: 0, cost: '', currentOdometerValue: '', date: '', distance: 0,
-    lastOdometerValue: '', liters: '', mileage: '', pricePerLiter: '', vehicleId: 0
+    id: 0, amount: 0, odometer: 0, date: '', distance: 0, liters: 0, mileage: 0, pricePerLiter: 0, vehicleId: 0, previousLiters:0, previousOdometer:0
   };
 
   constructor(private navParams: NavParams, private navCntrl: NavController, private alertCtrl:AlertController,
-private sqlhelper: SQLHelper){
+private sqlhelper: SQLHelper){  
       this.fillUp = navParams.get('fillUp') as FillUp;
   }
 
@@ -39,7 +38,7 @@ private sqlhelper: SQLHelper){
         {
           text: 'Remove',
           handler: () => {
-            this.sqlhelper.query(`delete from tblFillUp where FillUpId = ${this.fillUp.fillUpId}`)
+            this.sqlhelper.query(`delete from tblFillUp where ID = ${this.fillUp.id}`)
               .then(data => {         
                   this.navCntrl.push(TabsPage, {goToPage: 0})       
               }).catch(resp => {

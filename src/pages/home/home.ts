@@ -41,10 +41,10 @@ export class HomePage {
       if (data.res.rows.length == 0) {
         this.navCtrl.push(AddVehiclePage, { "isFirstTime": true, "action": "Create" });
       }
-      else {
+      else {        
         for (var i = 0; i < data.res.rows.length; i++) {
           let vehicle = {
-            id: data.res.rows.item(i).id,
+            id: data.res.rows.item(i).ID,
             imageUrl: 'assets/img/car.png',
             make: data.res.rows.item(i).Make,
             model: data.res.rows.item(i).Model
@@ -67,35 +67,29 @@ export class HomePage {
 
   getFillUpByVehicle(selectedVehicleId: number, refresher: Refresher) {
     this.fillUps = [];
-    this.sqlHelper.query(`select * from tblFillUp where VehicleId = ${selectedVehicleId} order by FillUpId desc`).then(data => {
-      let fillUps: Vehicle[] = [];
-
+    this.sqlHelper.query(`select * from tblFillUp where VehicleId = ${selectedVehicleId} order by ID desc`).then(data => {
+      let fillUps: Vehicle[] = [];      
       for (var i = 0; i < data.res.rows.length; i++) {
         let fillUp: FillUp = {
-          fillUpId: data.res.rows.item(i).FillUpId,
+          id: data.res.rows.item(i).ID,
           date: data.res.rows.item(i).Date,
-          lastOdometerValue: data.res.rows.item(i).PreviousODMeter,
-          currentOdometerValue: data.res.rows.item(i).CurrentODMeter,
+          odometer: data.res.rows.item(i).Odometer,
           pricePerLiter: data.res.rows.item(i).PricePerLiter,
           liters: data.res.rows.item(i).Liters,
-          cost: data.res.rows.item(i).Cost,
+          amount: data.res.rows.item(i).Amount,
           mileage: data.res.rows.item(i).Mileage,
           vehicleId: this.selectModel,
-          distance: data.res.rows.item(i).Distance
+          distance: data.res.rows.item(i).Distance,
+          previousOdometer: i == data.res.rows.length -1 ? null : data.res.rows.item(i+1).Odometer,
+          previousLiters: i == data.res.rows.length - 1 ? null : data.res.rows.item(i+1).Liters
         }
 
         this.fillUps.push(fillUp);
       }
 
-
       if (refresher) {
         refresher.complete();
       }
-      const toast = this.toastCtrl.create({
-        message: 'Load complete...',
-        duration: 3000
-      });
-      toast.present();
     }).catch(response => {
       console.log(response)
     });
@@ -125,7 +119,7 @@ export class HomePage {
         {
           text: 'Remove',
           handler: () => {
-            this.sqlHelper.query(`delete from tblFillUp where FillUpId = ${fillUpData.fillUpId}`)
+            this.sqlHelper.query(`delete from tblFillUp where ID = ${fillUpData.id}`)
               .then(data => {
                 this.getFillUpByVehicle(this.selectModel, null);
               }).catch(resp => {

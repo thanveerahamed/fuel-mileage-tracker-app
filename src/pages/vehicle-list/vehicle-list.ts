@@ -48,13 +48,12 @@ export class VehicleListPage {
     });
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad() {    
     this.sqlHelper.query('select * from tblVehicle').then(data => {
-      let vehicles: Vehicle[] = [];      
-      
+      let vehicles: Vehicle[] = [];            
         for (var i = 0; i < data.res.rows.length; i++) {
           let vehicle = {
-            id: data.res.rows.item(i).id,
+            id: data.res.rows.item(i).ID,
             imageUrl: 'assets/img/car.png',
             make: data.res.rows.item(i).Make,
             model: data.res.rows.item(i).Model
@@ -68,7 +67,7 @@ export class VehicleListPage {
   }
 
   openAddvehiclePage() {
-    this.navCtrl.push(AddVehiclePage);
+    this.navCtrl.push(AddVehiclePage, {"action": "Create"});
   }
 
   goToVehicleDetail(vehicle:any){
