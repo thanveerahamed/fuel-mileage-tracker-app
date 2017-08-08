@@ -37,27 +37,29 @@ export class SQLHelper {
   // Initialize the DB with our required tables
   _tryInit() {
     this.query(`create table IF NOT EXISTS tblFillUp(
-      ID INT PRIMARY KEY AUTOINCREMENT, 
+      ID INTEGER PRIMARY KEY AUTOINCREMENT, 
       Date TEXT,
       Odometer NUMERIC,
       PricePerLiter NUMERIC,
       Liters NUMERIC,
       Amount NUMERIC,
       Mileage NUMERIC,
-      VehicleId INT,
+      VehicleId INTEGER,
       Distance NUMERIC
     )`).catch((error) => {
-        console.log('tblFillUp' + error);
+        console.log('tblFillUp');
+        console.log(error);
       });
 
     this.query(`create table IF NOT EXISTS tblVehicle(
-      ID INT PRIMARY KEY AUTOINCREMENT, 
+      ID INTEGER PRIMARY KEY AUTOINCREMENT, 
       ImageUrl TEXT,
       Make TEXT,
       Model TEXT
     )`).then(result => {
     }).catch((error) => {
-        console.log('tblVehicle' + error);
+        console.log('tblVehicle');
+        console.log(error);
       });
 
       // this.query(`drop table IF EXISTS tblFillUp`).catch((error) => {
