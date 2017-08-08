@@ -40,23 +40,23 @@ All app preview screenshots were taken by running `ionic serve --lab` on Chrome 
 
 - Home Page
 
-  <img src="resources/screenshot/FillUpPage.jpg" alt="Schedule">
+  <img src="resources/screenshot/FillUpPage.JPG" alt="Home Page">
 
 - Vehicle Page
 
-  <img src="resources/screenshot/VehiclesPage.jpg" alt="Schedule">
+  <img src="resources/screenshot/VehiclesPage.JPG" alt="Vehicle Page">
 
 - Add Fill Up Page
 
-  <img src="resources/screenshot/AddFillUpPage.jpg" alt="Schedule">
+  <img src="resources/screenshot/AddFillUpPage.JPG" alt="Fill Up Page">
 
 - Add Vehicle Page
 
-  <img src="resources/screenshot/AddVehiclePage.jpg" alt="Schedule">
+  <img src="resources/screenshot/AddVehiclePage.JPG" alt="Add Vehicle Page">
 
 - App Drawer
 
-  <img src="resources/screenshot/AppDrawer.jpg" alt="Schedule">
+  <img src="resources/screenshot/AppDrawer.JPG" alt="App Drawer">
 
 ## Contributors
 
