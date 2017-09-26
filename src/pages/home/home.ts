@@ -6,10 +6,12 @@ import { FillUp } from '../../interfaces/fillup';
 import { SQLite } from '@ionic-native/sqlite';
 import { Storage } from '@ionic/storage';
 
+import { Helper } from '../../providers/helper';
 import { SQLHelper } from '../../providers/sql-helper';
 import { AddFillUpPage } from '../add-fillup/add-fillup';
 import { FillUpDetailPage } from '../view-fillup/view-fillup';
 import { AddVehiclePage } from '../add-vehicle/add-vehicle';
+import { SettingsPage } from '../settings/settings';
 
 @Component({
   selector: 'page-home',
@@ -23,12 +25,14 @@ export class HomePage {
   selectedVehicle: number;
   selectModel: any;
   public database: SQLite;
+  distanceUnit: string;
+  consumptionUnit: string;
+
   constructor(public navCtrl: NavController,
     public toastCtrl: ToastController,
     public platForm: Platform,
     public sqlHelper: SQLHelper,
-    public alertCtrl: AlertController, private storage: Storage, private events: Events) {    
-
+    public alertCtrl: AlertController, private storage: Storage, private events: Events, private helper: Helper) { 
     this.loadDropDownAndFillUps(null);
     events.subscribe('vehicle:reload', (user, time) => {
       this.loadDropDownAndFillUps(null);
@@ -52,16 +56,31 @@ export class HomePage {
           vehicles.push(vehicle);
         }
         this.vehicles = vehicles
+        this.helper.getSelectedVehicle().then((vehicle) => {          
+          if(vehicle)
+            this.selectModel = vehicle.id;
+          else
+            this.selectModel = this.vehicles[0].id;
 
-        this.selectModel = this.vehicles[0].id;
-        this.getFillUpByVehicle(this.selectModel, refresher);
+          this.getFillUpByVehicle(this.selectModel, refresher);
+        });       
+        
       }
     }).catch(response => {
       console.log(response)
     });
   }
 
-  vehicleSelectionChange() {
+  vehicleSelectionChange() {    
+    var selectedVeh: Vehicle;
+    this.vehicles.forEach(veh => {
+      if(veh.id == this.selectModel){
+        selectedVeh = veh;
+        return;
+      }
+    });
+
+    this.helper.setSelectedVehicle(selectedVeh);
     this.getFillUpByVehicle(this.selectModel, null);
   }
 
@@ -86,6 +105,14 @@ export class HomePage {
 
         this.fillUps.push(fillUp);
       }
+
+      this.helper.getSelectedDistance().then(value =>{
+        this.distanceUnit = value;
+      });
+
+      this.helper.getSelectedConsumption().then(value => {
+        this.consumptionUnit = value;
+      });
 
       if (refresher) {
         refresher.complete();
@@ -138,6 +165,10 @@ export class HomePage {
 
   openFillUpDetail(fillUp: FillUp) {
     this.navCtrl.push(FillUpDetailPage, { fillUp: fillUp });
+  }
+
+  loadSettings(){
+    this.navCtrl.push(SettingsPage);
   }
 
 }

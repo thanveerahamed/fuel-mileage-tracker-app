@@ -61,10 +61,11 @@ export class AddVehiclePage {
       .then(() => {        
         this.events.publish('vehicle:reload');
         if (this.isFirstTime) {
-          this.navCtrl.push(TabsPage, { goToPage: '0' });
+          this.navCtrl.popToRoot();
         }
         else {
-          this.navCtrl.push(TabsPage, { goToPage: '1' });
+          //this.navCtrl.push(TabsPage, { goToPage: '1' });
+          this.navCtrl.popToRoot();
         }
       }).catch(
       (response) => {
@@ -79,7 +80,7 @@ export class AddVehiclePage {
     where Id = ${this.vehicle.id}`)
       .then(() => {        
         this.events.publish('vehicle:reload');
-        this.navCtrl.push(TabsPage, { goToPage: '1' });
+        this.navCtrl.popToRoot();
       }).catch(
       (response) => {
         console.log(response.err);

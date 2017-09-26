@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, NavController, AlertController, Events } from 'ionic-angular'
+import { NavParams, NavController, AlertController, Events, LoadingController, } from 'ionic-angular'
 
 import { SQLHelper } from '../../providers/sql-helper';
 import { Vehicle } from '../../interfaces/vehicle';
@@ -13,10 +13,12 @@ import { AddVehiclePage } from '../add-vehicle/add-vehicle';
 
 export class ViewVehiclePage {
     vehicle: Vehicle;
+    loadingSpinner: any;
     constructor(public navParams: NavParams,
         public alertCtrl: AlertController,
         public navCtrl: NavController,
-        public sqlHelper: SQLHelper, private events: Events) {
+        public sqlHelper: SQLHelper, private events: Events,
+    public loadingCntrl: LoadingController) {
         this.vehicle = navParams.get("vehicle") as Vehicle;
     }
 
@@ -33,6 +35,11 @@ export class ViewVehiclePage {
                 {
                     text: 'Remove',
                     handler: () => {
+                        let loadingSpinner = this.loadingCntrl.create({
+                            content: "Please wait...",
+                            dismissOnPageChange : true
+                        }).present();
+
                         this.sqlHelper.query(`delete from tblVehicle where ID = ${this.vehicle.id}`)
                             .then(data => {
                                 console.log("vehicle removed!");
@@ -43,10 +50,11 @@ export class ViewVehiclePage {
                                         console.log(resp);
                                     });
                                 this.events.publish('vehicle:reload');
+                                this.navCtrl.popToRoot();
                             }).catch(resp => {
                                 console.log(resp);
-                            });
-                        this.navCtrl.push(TabsPage, { goToPage: 1 })
+                                this.navCtrl.popToRoot();
+                            });                        
                     }
                 }
             ]

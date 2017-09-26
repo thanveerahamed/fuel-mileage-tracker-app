@@ -33,8 +33,8 @@
 			</p>
 
 			<ion-item>
-				<ion-label stacked color="primary">Current Odometer (kms)</ion-label>
-				<ion-input [(ngModel)]="fillup.odometer" name="currentOdo" type="text" #fillupcurrentOdometerValue="ngModel"
+				<ion-label stacked color="primary" floating>Current Odometer (kms)</ion-label>
+				<ion-input [(ngModel)]="fillup.odometer" name="currentOdo" type="number" #fillupcurrentOdometerValue="ngModel"
 				 spellcheck="false" required>
 				</ion-input>
 			</ion-item>
@@ -43,8 +43,8 @@
 			</p>
 
 			<ion-item>
-				<ion-label stacked color="primary">Amount Filled For (rupees)</ion-label>
-				<ion-input [(ngModel)]="fillup.amount" name="amount" type="text" #fillupcost="ngModel" spellcheck="false" required>
+				<ion-label stacked color="primary" floating>Amount Filled For (rupees)</ion-label>
+				<ion-input [(ngModel)]="fillup.amount" name="amount" type="number" #fillupcost="ngModel" spellcheck="false" required>
 				</ion-input>
 			</ion-item>
 			<p ion-text [hidden]="fillupcost.valid || submitted == false" color="danger" padding-left>
@@ -52,8 +52,8 @@
 			</p>
 
 			<ion-item>
-				<ion-label stacked color="primary">Price (rupees/ltr)</ion-label>
-				<ion-input [(ngModel)]="fillup.pricePerLiter" name="priceperltr" type="text" #filluppricePerLiter="ngModel" spellcheck="false"
+				<ion-label stacked color="primary" floating>Price (rupees/ltr)</ion-label>
+				<ion-input [(ngModel)]="fillup.pricePerLiter" name="priceperltr" type="number" #filluppricePerLiter="ngModel" spellcheck="false"
 				 required>
 				</ion-input>
 			</ion-item>

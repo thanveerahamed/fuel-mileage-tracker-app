@@ -35,6 +35,7 @@ $app-direction: ltr;
 
 $colors: (
   primary:    #488aff,
+  primary1: #30579a,
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
@@ -58,10 +59,12 @@ $colors: (
 // Material Design only Sass variables can go here
 
 // Use the primary color as the background for the toolbar-md-background
-$toolbar-md-background:                   color($colors, primary);
+$toolbar-md-background:                   color($colors, primary1);
 
 // Change the color of the segment button text
 $toolbar-md-active-color:                 #fff;
+
+$content-md-background: color($colors, dark);
 
 // App Windows Variables
 // --------------------------------------------------

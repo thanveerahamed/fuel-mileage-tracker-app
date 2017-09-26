@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { NgForm } from '@angular/forms';
 
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Events } from 'ionic-angular';
 
 import { SQLHelper } from '../../providers/sql-helper';
 import { Vehicle } from '../../interfaces/vehicle';
 import { FillUp } from '../../interfaces/fillup';
 
 import { TabsPage } from '../tabs/tabs';
+import { Helper } from '../../providers/helper';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class AddFillUpPage {
   previousLiters: number = 0;
   isFirstFillUp: boolean = false;
 
-  constructor(public navCtrl: NavController, public sqlHelper: SQLHelper, private datePipe: DatePipe, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public sqlHelper: SQLHelper, private datePipe: DatePipe, public navParams: NavParams, public events: Events,
+  public helper: Helper) {
 
     this.action = navParams.get('actionName');
 
@@ -89,15 +91,15 @@ export class AddFillUpPage {
     }
   }
 
-  addFillUpToDataBase() {    
-    console.log(`insert into tblFillUp(Date, Odometer,PricePerLiter,Liters ,Amount ,Mileage,VehicleId ,Distance) 
-    values ('${this.fillup.date}', ${this.fillup.odometer}, ${this.fillup.pricePerLiter} , ${this.fillup.liters} , ${this.fillup.amount}, ${this.fillup.mileage}, ${this.vehicle.id}, ${this.fillup.distance})`)
+  addFillUpToDataBase() {        
     this.sqlHelper.query(`insert into tblFillUp(Date, Odometer,PricePerLiter,Liters ,Amount ,Mileage,VehicleId ,Distance) values ('${this.fillup.date}', ${this.fillup.odometer}, ${this.fillup.pricePerLiter} , ${this.fillup.liters} , 
-      ${this.fillup.amount}, ${this.fillup.mileage}, ${this.vehicle.id}, ${this.fillup.distance})`).then(() => {
-        this.navCtrl.push(TabsPage);
+      ${this.fillup.amount}, ${this.fillup.mileage}, ${this.vehicle.id}, ${this.fillup.distance})`).then(() => {        
+        this.events.publish('vehicle:reload');
+        this.navCtrl.popToRoot();
       }).catch(
       (response) => {
         console.log(response.err);
+        this.helper.showToast("Some error occured while adding the fillup.", "Bottom");
       }
       );
   }
@@ -114,10 +116,12 @@ export class AddFillUpPage {
     Distance = ${this.fillup.distance}
     where ID= ${this.fillup.id}`)
       .then(() => {
-        this.navCtrl.pop();
+        this.events.publish('vehicle:reload');
+        this.navCtrl.popToRoot();
       }).catch(
       (response) => {
         console.log(response.err);
+        this.helper.showToast("Some error occured while updating the fillup.", "Bottom");
       }
       );
   }

@@ -20,26 +20,26 @@
     </ion-row>
     <ion-row >
       <ion-col>Odometer:</ion-col>
-      <ion-col>{{fillUp.odometer}} kms</ion-col>
+      <ion-col>{{fillUp.odometer}} {{distanceUnit}}</ion-col>
     </ion-row>
     <ion-row >
       <ion-col>Distance:</ion-col>
       <ion-col [hidden]="fillUp.distance != null" >(n/a)</ion-col>
-      <ion-col [hidden]="fillUp.distance == null">{{fillUp.distance}} kms/ltr</ion-col>
+      <ion-col [hidden]="fillUp.distance == null">{{fillUp.distance}} {{distanceUnit}}</ion-col>
     </ion-row>
     <ion-row >
       <ion-col>Mileage:</ion-col>
       <ion-col [hidden]="fillUp.mileage != null" >(n/a)</ion-col>
-      <ion-col [hidden]="fillUp.mileage == null">{{fillUp.mileage}} kms/ltr</ion-col>
+      <ion-col [hidden]="fillUp.mileage == null">{{fillUp.mileage}} {{consumptionUnit}}</ion-col>
     </ion-row>
     <ion-row >
       <ion-col>Price/ltr:</ion-col>
-      <ion-col>{{fillUp.pricePerLiter}} rupees</ion-col>
+      <ion-col>{{fillUp.pricePerLiter}} {{currency}}</ion-col>
     </ion-row>
     <ion-row >
       <ion-col>Amount:</ion-col>
       <ion-col [hidden]="fillUp.amount != null" >(n/a)</ion-col>
-      <ion-col [hidden]="fillUp.amount == null">{{fillUp.amount}} rupees</ion-col>      
+      <ion-col [hidden]="fillUp.amount == null">{{fillUp.amount}} {{currency}}</ion-col>      
     </ion-row>
   </ion-grid>
 </ion-content>

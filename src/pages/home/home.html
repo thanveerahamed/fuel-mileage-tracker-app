@@ -6,13 +6,18 @@
     <ion-title>
       Fuel & Mileage Tracker
     </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="loadSettings()">
+        <ion-icon md="md-settings"></ion-icon>
+      </button>
+    </ion-buttons>
     
   </ion-navbar>
   <ion-toolbar no-border-top>
-    <ion-select class="vehicleSelect" [(ngModel)]="selectModel"  (ionChange)="vehicleSelectionChange()">
+    <ion-select class="vehicleSelect" [(ngModel)]="selectModel"  (ionChange)="vehicleSelectionChange($event)">
     <ion-option *ngFor="let vehicle of vehicles" [value]="vehicle.id">{{vehicle.make}} {{vehicle.model}}</ion-option>    
   </ion-select>  
-  </ion-toolbar>
+  </ion-toolbar>  
 
 </ion-header>
 
@@ -29,9 +34,9 @@
         <img src="assets/img/fuelstation.png">
       </ion-avatar>      
       <p>Date: {{fillUp.date}}</p>
-      <p>Odo:{{fillUp.odometer}} <small>kms</small></p>
-      <p>Distance: <span [hidden]="fillUp.distance != null">(n/a)</span> <span [hidden]="fillUp.distance == null">{{fillUp.distance}} <small>kms</small></span></p>
-      <ion-note item-end><span [hidden]="fillUp.mileage != null">(n/a)</span> <span [hidden]="fillUp.mileage == null">{{fillUp.mileage}} <small>km/ltr</small></span></ion-note>
+      <p>Odo:{{fillUp.odometer}} <small>{{distanceUnit}}</small></p>
+      <p>Distance: <span [hidden]="fillUp.distance != null">(n/a)</span> <span [hidden]="fillUp.distance == null">{{fillUp.distance}} <small>{{distanceUnit}}</small></span></p>
+      <ion-note item-end><span [hidden]="fillUp.mileage != null">(n/a)</span> <span [hidden]="fillUp.mileage == null">{{fillUp.mileage}} <small>{{consumptionUnit}}</small></span></ion-note>
     </ion-item>  
         <ion-item-options>
           <button ion-button icon-only color="danger" (click)="removeFillUp(slidingItem, fillUp)"><ion-icon name="trash"></ion-icon></button>
